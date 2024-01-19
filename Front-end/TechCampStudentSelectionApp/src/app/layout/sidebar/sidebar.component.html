@@ -1,0 +1,32 @@
+<p-sidebar [(visible)]="visibleSidebar3" position="top" [baseZIndex]="1">
+  <!-- <h1 style="font-family:HerlevticaNeueLTStd; margin: 0;">Candidatos</h1> -->
+  <div style="width: 100%; display: flex;">
+    <div style="margin-left: 40px; font-size: 20px; width:33%">
+      <div style="color:#AD0000; margin-left: 40px;">
+        <img src="../../../assets/img/ico-people.png" style="height: 24px" alt="">
+        Gestionar candidatos
+      </div>
+      <ul (click)="changeVisibleSidebar()">
+        <li [routerLink]="['/private/list-candidates']">Listar candidatos</li>
+        <li [routerLink]="['/register']">Agregar candidato</li>
+        <li [routerLink]="['/private/load-candidates']">Cargar candidato desde archivo</li>
+      </ul>
+    </div>
+    <div style="margin-left: 40px; font-size: 20px; width:33%">
+      <div style="color:#AD0000; margin-left: 40px;">
+        <img src="../../../assets/img/report.svg" style="height: 24px" alt="">
+        Gestionar convocatorias
+      </div>
+      <ul (click)="changeVisibleSidebar()">
+        <li [routerLink]="['/private/search-convocation']" (click)="!visibleSidebar3">Buscar convocatorias</li>
+        <li [routerLink]="['/private/create-convocation']" (click)="!visibleSidebar3">Crear nueva convocatoria</li>
+      </ul>
+    </div>
+  </div>
+</p-sidebar>
+<img *ngIf="!visibleSidebar3" src="../../../assets/img/btn_aqui_puedo_Inactivo.png" (click)="visibleSidebar3 = true" alt=""
+style="max-height: 84px;margin-left: 10%; cursor: pointer;">
+<img *ngIf="visibleSidebar3" src="../../../assets/img/btn_aqui_puedo_Activo.png" (click)="visibleSidebar3 = false" alt=""
+style="max-height: 84px;margin-left: 10%; cursor: pointer;">
+
+

@@ -1,0 +1,104 @@
+<p-card>
+  <div>
+    <div>
+      <form action="" [formGroup]="candidateForm">
+        <h2>Datos esenciales</h2>
+        <div class="w-100 d-flex justify-around">
+          <div class="w-33">
+            <label class="block">Nombres</label>
+            <input type="username" formControlName="names" class="ng-invalid ng-dirty" pInputText />
+            <small *ngIf="candidateForm.controls['names']?.invalid" class="p-error block">Los nombres son requeridos.</small>
+          </div>
+          <div class="w-33">
+            <label class="block">Apellidos</label>
+            <input type="username" formControlName="surnames" class="ng-invalid ng-dirty" pInputText />
+            <small *ngIf="candidateForm.controls['surnames']?.invalid" class="p-error block">Los apellidos son requeridos.</small>
+          </div>
+          <div class="w-33">
+            <label class="block">Email</label>
+            <input type="username" formControlName="email" class="ng-invalid ng-dirty" pInputText />
+            <small *ngIf="candidateForm.controls['email']?.invalid" class="p-error block">El email es requerido. Digite uno válido.</small>
+          </div>
+        </div>
+        <br>
+        <div class=" w-100 d-flex justify-around">
+          <div class="w-33">
+            <label class="block">Tipo de documento</label>
+            <p-dropdown [options]="documentTypeList" formControlName="docType" optionLabel="name"  >
+            </p-dropdown>
+            <small *ngIf="candidateForm.controls['docType']?.invalid" class="p-error block">El tipo de documento es requerido.</small>
+          </div>
+          <div class="w-33">
+            <label class="block">Número de documento</label>
+            <p-inputNumber formControlName="docNum" ></p-inputNumber >
+            <small *ngIf="candidateForm.controls['docNum']?.invalid" class="p-error block">El numero de documento es requerido.</small>
+          </div>
+          <div class="w-33">
+            <label class="block">Fecha de nacimiento</label>
+            <p-calendar  formControlName="birthday" [showIcon]="true" inputId="icon" ></p-calendar >
+            <small *ngIf="candidateForm.controls['birthday']?.invalid" class="p-error block">La fecha de nacimiento es requerida.</small>
+          </div>
+        </div>
+        <br>
+        <br>
+      </form>
+      <div>
+        <h2>Datos complementarios</h2>
+        <div *ngIf="loaded">
+          <div *ngFor="let category of questionnaire; let categIndex = index" #categ+{{categoy.id}}>
+            <h3>{{category.name}}</h3>
+            <br>
+            <div class="w-100 d-flex justify-start">
+              <div *ngFor="let question of category.questions; let questionIndex = index" class="w-50 d-flex w-100">
+                <div *ngIf="question.name!='age'" class="d-flex direction-column w-100" style="padding:5%;">
+                  <div class="d-block justify-fstart">
+                    <div style="margin: 15px 0; min-width: 50%;"
+                    class="d-  justify-around aligin-center ">
+                      <label>{{question.description}}</label>
+                    </div>
+                    <div style="margin: 15px 0; display: flex; justify-content: space-around;" >
+                        <div class="selectdiv w-33  max-w-100">
+                          <!-- value="formAnswersList[question.id].answer" -->
+                          <label>
+                            <select [name]="questionIndex.toString()" [ngModel]="searchAnswer(question.id,categIndex,questionIndex)?.id"
+                            (change)="selectAnswer($event, question.id)" >
+                            <option *ngFor="let answer of question.answers" [value]="answer.id">
+                              {{answer.name}}
+                            </option>
+                          </select>
+                          </label>
+                          <!-- [autoDisplayFirst]="false" -->
+                          <!-- <p-dropdown [autoDisplayFirst]="false" [ngModel]="searchAnswer(question.id,categIndex,questionIndex)?.id"
+                          [options]="question.answers" (onChange)="selectAnswer($event, question.id)" optionLabel="name" dataKey="answer.id" >
+                          </p-dropdown> -->
+                        </div>
+                    </div>
+
+                  </div>
+                  <div class="d-flex justify-center">
+                    <small *ngIf="this.formAnswersList[question.id].answer.id==null || undefined" class="p-error block">Favor diligencie este campo. Diligenciar todos los campos le facilitará avanzar en el proceso.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <p-messages></p-messages>
+      <br>
+      <div class="d-flex justify-evenly">
+        <div>
+          <button pButton pRipple type="button" label="Guardar" [disabled]="!candidateForm.valid"
+
+          (click)="guardar()" class="p-button-raised p-button-danger"></button>
+        </div>
+        <!-- <div>
+          <button pButton pRipple type="button" label="Cancelar" (click)="cancelar()" class="p-button-raised p-button-secondary"></button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</p-card>
+
+

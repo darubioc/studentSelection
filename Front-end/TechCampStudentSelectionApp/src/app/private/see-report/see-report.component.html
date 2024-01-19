@@ -1,0 +1,62 @@
+<p-card>
+  <div>
+    <div style="display: flex; justify-content: space-around;">
+      <p>Convocatoria: {{convocationDescription?.name}}</p>
+      <p>Fecha convocatoria: {{convocationDescription?.dateConvocation | date}}</p>
+      <div *ngIf="clickFile" (click)="downloadReport()">
+        <i class="pi pi-download" style="font-size: 2rem"></i>
+      </div>
+      <div *ngIf="!clickFile">
+        <p-progressSpinner></p-progressSpinner>
+      </div>
+    </div>
+    <h2>Criterios usados: </h2>
+    <p-table [value]="criteriaList">
+      <ng-template pTemplate="header">
+          <tr>
+              <th pSortableColumn="id">Identificador</th>
+              <th pSortableColumn="name">Nombre</th>
+              <th pSortableColumn="dateConvocation">Dato y prioridad</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-convocatoria>
+          <tr>
+              <td>{{convocatoria.id}}</td>
+              <td>{{convocatoria.name}} - {{convocatoria.weight}}%</td>
+              <td>
+                <!-- <ul class="rows" *ngFor="let priority of convocatoria.priorities">
+                  <li><span> Dato: {{priority.name}}</span> <span>Prioridad: {{priority.value}}</span></li>
+                </ul> -->
+
+                <p *ngFor="let priority of convocatoria.priorities">
+                  Dato: {{priority.name}} Prioridad: {{priority.value}}</p>
+              </td>
+          </tr>
+      </ng-template>
+    </p-table>
+    <br>
+    <h2>Resultado con detalles</h2>
+    <p-table [value]="reportList">
+      <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="candidateName">Candidato</th>
+            <th pSortableColumn="totalScore">Puntuación total</th>
+            <th pSortableColumn="reportDetail">Detalle respuestas</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-report>
+          <tr>
+            <td>{{report.candidateName}}</td>
+            <td >{{report.totalScore}}</td>
+            <td>
+              <p *ngFor="let reportDetail of report.reportDetail">
+                Categoría: {{reportDetail.feature}} Respuesta: {{reportDetail.answer}} Puntos: {{reportDetail.score}}</p>
+              <!-- <ul *ngFor="let reportDetail of report.reportDetail">
+                <li> Categoría: {{reportDetail.feature}} Respuesta: {{reportDetail.answer}} Puntos: {{reportDetail.score}}</li>
+              </ul> -->
+            </td>
+          </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</p-card>

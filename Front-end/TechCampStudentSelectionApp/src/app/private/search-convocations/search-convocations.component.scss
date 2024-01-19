@@ -1,0 +1,12 @@
+:host{
+  ::ng-deep .p-card .p-card-body {
+    margin: 2%;
+    //border: 2px solid #bababa;
+    border: 2px outset #e4e2e2;
+    border-radius: 10px;
+  }
+
+  ::ng-deep .p-card {
+    box-shadow: none;
+  }
+}

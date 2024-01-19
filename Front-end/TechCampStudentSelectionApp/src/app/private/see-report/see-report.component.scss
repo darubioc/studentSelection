@@ -1,0 +1,38 @@
+:host ::ng-deep{
+  .p-datatable .p-datatable-tbody >tr> th{
+    text-align: center;
+  }
+  .p-datatable .p-datatable-tbody >tr> td{
+    text-align: center;
+  }
+  .p-datatable .p-datatable-thead >tr> th{
+    text-align: center;
+  }
+  .p-progress-spinner-svg{
+    height: 50px;
+  }
+
+}
+.rows {
+  margin: 0;
+  padding: 0;
+
+  li {
+    text-decoration: none;
+    /* list-style: none;
+
+    display: flex; */
+    margin-bottom: 10px;
+    justify-content: space-around;
+    width: 50%;
+
+    span {
+      margin-right: 20px;
+    }
+  }
+}
+
+p{
+  text-align: justify;
+  text-justify: inter-word;
+}

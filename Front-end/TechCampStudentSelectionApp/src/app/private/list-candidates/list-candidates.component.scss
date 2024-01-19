@@ -1,0 +1,27 @@
+
+:host{
+  ::ng-deep .p-datatable .p-datatable-thead th{
+    text-align: center;
+  }
+  ::ng-deep .p-datatable .p-datatable-tbody  td{
+    text-align: center;
+  }
+  ::ng-deep .pi-trash {
+      color: #ad0000;
+  }
+  ::ng-deep .pi-user-edit {
+    color: #ad0000;
+  }
+  ::ng-deep .p-card .p-card-body {
+    margin: 2%;
+    //border: 2px solid #bababa;
+    border: 2px outset #e4e2e2;
+    border-radius: 10px;
+
+  }
+  ::ng-deep .p-card {
+    box-shadow: none;
+  }
+
+}
+

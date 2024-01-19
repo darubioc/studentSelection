@@ -1,0 +1,96 @@
+<p-card>
+  <div>
+    <h2>Crear convocatoria</h2>
+    <div class="flex" style="justify-content: space-around;">
+      <div>
+        <span class="p-float-label">
+          <input id="float-input" type="text" pInputText [(ngModel)]="nameConvocation">
+          <label for="float-input">Nombre de convocatoria</label>
+        </span>
+      </div>
+      <span style="display: flex; ">
+        <div>
+          <p>Recuerde asignar prioridades a cada categoría.</p>
+          <p>Éstos son vitales para la generación de puntuaciones a través de la fórmula:</p>
+        </div>
+        <div style="position: relative; margin-left: 5px;">
+          <img style="position: absolute;
+          top: 50px;" src="../../../assets/img/formula.svg" alt="">
+        </div>
+      </span>
+    </div>
+    <div style="margin-top: 5%;" *ngIf="loaded">
+      <div style="border-bottom: 2px inset #ececec; margin-bottom: 30px;" *ngFor="let category of questionnaire; let categIndex = index">
+        <div style="display:flex; align-items: center;">
+          <h3>{{category.name}}</h3>
+          <span class="p-float-label" style="margin: 0 5%">
+            <p-inputNumber [(ngModel)]="formAnswersList[category.id].weight" suffix="%" [min]="0" [max]="100"
+            (ngModelChange)="calcTotalWeight($event,category.id)"
+            ></p-inputNumber>
+            <small *ngIf="totalWeight>100" class="p-error block">La suma de los porcentajes debe ser inferior o igual a 100%.</small>
+            <small *ngIf="totalWeight>100" class="p-error block">Actualmente la suma resulta en {{totalWeight}}.</small>
+            <small *ngIf="totalWeight<100" class="p-error block">Se requiere completar el 100%, actualmente los criterios poseen:{{totalWeight}}%.</small>
+            <label for="float-input">Peso de la categoria (%)</label>
+
+          </span>
+        </div>
+        <br>
+        <div *ngIf="formAnswersList[category.id].weight>0" style="display:block">
+          <div *ngFor="let question of category.questions; let questionIndex = index" >
+            <div class="d-flex direction-column w-100">
+              <div style="display:block">
+                <div style="margin: 15px 0; min-width: 50%; display: flex;"
+                class="d-flex justify-around aligin-center ">
+                <p-checkbox name="groupname" (onChange)="disableOtherQuestions(category.id,question.id)" [binary]="true"
+                [(ngModel)]="formAnswersList[category.id][question.id].active"></p-checkbox>
+
+                <label style="margin: 0 20px;">{{question.description}}</label>
+                <div *ngIf="formAnswersList[category.id][question.id].active" class="selectdiv w-33  max-w-100">
+                  <label>
+                  <p-dropdown [autoDisplayFirst]="false" [options]="question.answers" optionLabel="name"
+                  (onChange)="selectAnswer($event,category.id, question.id)" value="answer.id"></p-dropdown>
+                  </label>
+                </div>
+                </div>
+                <div style="display: flex;">
+                  <div style="margin: 15px 0; display: flex; justify-content: space-around;" >
+
+                  </div>
+                  <div *ngIf="this.formAnswersList[category.id][question.id].answers.length>0" style="display: flex; align-items: center;">
+                    <H4>Edite las prioridades de cada respuesta:</H4>
+                    <div style="display: block; margin:10px 20px;">
+                      <div style="display:flex; width:100%;  margin:30px 20px;" *ngFor="let answer of this.formAnswersList[category.id][question.id].answers" >
+                        <div style="width: 75%;">
+                          <span style="margin:0 20px">Respuesta: {{answer.name}}</span>
+                        </div>
+                        <div style="width: 25%;">
+                          <span class="p-float-label">
+                            <p-inputNumber [(ngModel)]="answer.priority" [min]="1" [max]="1000"></p-inputNumber>
+                            <label for="float-input">Prioridad</label>
+                          </span>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p-messages></p-messages>
+    <div class="d-flex justify-evenly">
+      <div>
+        <button *ngIf="totalWeight<100" pButton pRipple type="button" label="Guardar" disabled="true" (click)="guardar()" class="p-button-raised p-button-danger"></button>
+        <button *ngIf="totalWeight==100" pButton pRipple type="button" label="Guardar" (click)="guardar()" class="p-button-raised p-button-danger"></button>
+      </div>
+      <div>
+        <button pButton pRipple type="button" label="Cancelar" (click)="cancelar()" class="p-button-raised p-button-secondary"></button>
+      </div>
+    </div>
+  </div>
+</p-card>

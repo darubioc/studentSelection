@@ -1,0 +1,38 @@
+
+<p-card>
+  <h1>LISTA DE CANDIDATOS</h1>
+  <br>
+  <p-messages></p-messages>
+  <p-table #dt [value]="candidateList" [lazy]="true"
+    (onLazyLoad)="loadCustomers($event)"
+    [totalRecords]="totalRecords"
+    [rows]="rows"
+    [paginator]="true"
+    [rowsPerPageOptions]="[10,20,30]"
+    currentPageReportTemplate="{first} hasta {last} de {totalRecords} candidatos"
+    [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Tipo de documento</th>
+            <th>Numero de identificación</th>
+            <th>Email</th>
+            <th>Opciones</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-candidate>
+        <tr>
+            <td>{{candidate.names}}</td>
+            <td>{{candidate.surnames}}</td>
+            <td>{{candidate.docType.name}}</td>
+            <td>{{+ candidate.docNum}}</td>
+            <td>{{candidate.email}}</td>
+            <td style="display: flex; justify-content: space-around;">
+                <i class="pi pi-user-edit" style="font-size: 2rem" (click)="openEditDialog(candidate)"></i>
+                <i class="pi pi-trash" style="font-size: 2rem" (click)="eliminateCandidate(candidate.id)"></i>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</p-card>

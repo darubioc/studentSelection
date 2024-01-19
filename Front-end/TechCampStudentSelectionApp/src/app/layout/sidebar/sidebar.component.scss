@@ -1,0 +1,29 @@
+.p-sidebar .p-sidebar-header{
+  margin: 0px;
+  padding: 0px;
+}
+:host {
+  ::ng-deep .p-sidebar-top{
+    height: auto;
+    top: 170px;
+  }
+  ::ng-deep .p-sidebar .p-sidebar-header{
+    padding: 0;
+    padding-top: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  ::ng-deep .p-sidebar .p-sidebar-content{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  ::ng-deep.p-sidebar{
+    background-image: url("../../../assets/img/top_bar_background.png");
+
+  }
+}
+ul {
+  list-style-image: url('../../../assets/img/bullet-gris.png');
+}
+li{
+  cursor: pointer;
+}

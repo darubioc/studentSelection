@@ -1,0 +1,105 @@
+<p-card>
+  <h2>CARGAR CANDIDATOS</h2>
+  <p>
+    Recuerde verificar la estructura y datos del archivo a cargar, de contener
+    errores éstos no serán cargados.
+  </p>
+  <div style="display: flex; justify-content:center;">
+    <table>
+      <tbody>
+        <tr style="height: 50px;">
+          <td style="height: 23px; text-align: center;">NOMBRE CAMPO</td>
+          <td style="height: 23px; text-align: center;">DIRECTRIZ</td>
+          <td style="height: 23px; text-align: center;">EJEMPLO</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">nombres</td>
+          <td style="height: 23px">Cualquiercontenido alfab&eacute;tico</td>
+          <td style="height: 23px">Danny</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">apellidos</td>
+          <td style="height: 23px">Cualquiercontenido alfab&eacute;tico</td>
+          <td style="height: 23px">Blues</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">fecha de cumplea&ntilde;os</td>
+          <td style="height: 23px">Fecha formato - dia/mes/a&ntilde;o</td>
+          <td style="height: 23px">23/11/1959</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">numero de documento</td>
+          <td style="height: 23px">
+            Cualquier valor num&eacute;rico que no haya sido ingresado previamente
+          </td>
+          <td style="height: 23px">7710025188</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">tipo de documento</td>
+          <td style="height: 23px">Num&eacute;rico, valoresentre 1 y 4</td>
+          <td style="height: 23px">3</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">correo electr&oacute;nico</td>
+          <td style="height: 23px">
+            Cualquiercontenido alfab&eacute;tico separado por @
+          </td>
+          <td style="height: 23px">dbluesv@spotify.com</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">activo</td>
+          <td style="height: 23px">Num&eacute;rico (1 o 2)</td>
+          <td style="height: 23px">1</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">G&eacute;nero</td>
+          <td style="height: 23px">Num&eacute;rico (1 o 2)</td>
+          <td style="height: 23px">2</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">Promedionotas</td>
+          <td style="height: 23px">Num&eacute;rico (3 o 8)</td>
+          <td style="height: 23px">5</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">Grado escolar</td>
+          <td style="height: 23px">Num&eacute;rico, valores entre 9 y 17</td>
+          <td style="height: 23px">15</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">Ciudad</td>
+          <td style="height: 23px">Num&eacute;rico, valoresentre 18 y 21</td>
+          <td style="height: 23px">20</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">Población étnica</td>
+          <td style="height: 23px">Num&eacute;rico, valoresentre 22 y 26</td>
+          <td style="height: 23px">24</td>
+        </tr>
+        <tr style="height: 23px">
+          <td style="height: 23px">Resultados icfes</td>
+          <td style="height: 23px">Num&eacute;rico, valoresentre 27 y 34</td>
+          <td style="height: 23px">33</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div style="display: block;">
+    <p>Ejemplo separando campos por comas y con más candidatos a registrar:</p>
+    <span>
+      Danny,Blues,23/11/1959,7710025188,3,dbluesv@spotify.com,25/05/2022,30/08/2022,1,2,5,15,20,24,33
+      Junina,Allbones,22/06/1962,7301962614,4,jallbonesw@posterous.com,24/09/2022,10/11/2022,1,2,6,15,18,24,31
+    </span>
+  </div>
+
+  <br />
+  <p-messages></p-messages>
+  <p-fileUpload
+    name="myfile[]"
+    [customUpload]="true"
+    (uploadHandler)="onUpload($event)"
+    accept=".txt"
+  ></p-fileUpload>
+</p-card>

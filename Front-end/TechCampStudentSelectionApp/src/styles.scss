@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+$default-font-family:HerlevticaNeueLTStd-Cn;
+body{
+  margin: 0;
+  font-family: $default-font-family;
+}
+@font-face {
+  font-family: HerlevticaNeueLTStd;
+  src: url(assets/fonts/HelveticaNeueLTStd-BdCn.otf) format("opentype");
+}
+@font-face {
+  font-family: HerlevticaNeueLTStd-Cn;
+  src: url(assets/fonts/HelveticaNeueLTStd-Cn.otf) format("opentype");
+}
+h1{
+  font-family: HerlevticaNeueLTStd;
+
+}
+li{
+  font-family: HerlevticaNeueLTStd-Cn;
+}
+

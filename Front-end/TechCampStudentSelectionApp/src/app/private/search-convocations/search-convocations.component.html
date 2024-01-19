@@ -1,0 +1,26 @@
+<p-card>
+  <div>
+    <h2>Buscar convocatoria</h2>
+    <p-table [value]="convocationList">
+      <ng-template pTemplate="header">
+          <tr>
+              <th pSortableColumn="id">Identificador</th>
+              <th pSortableColumn="name">Nombre</th>
+              <th pSortableColumn="dateConvocation">Fecha</th>
+              <th >Detalle</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-convocatoria>
+          <tr>
+              <td>{{convocatoria.id}}</td>
+              <td>{{convocatoria.name}}</td>
+              <td>{{convocatoria.dateConvocation | date}}</td>
+              <td (click)="redirectToSeeReport(convocatoria)">
+                <!-- (click)="openEditDialog(candidate)" -->
+                <i class="pi pi-search" style="font-size: 2rem" ></i>
+
+          </tr>
+      </ng-template>
+  </p-table>
+  </div>
+</p-card>
